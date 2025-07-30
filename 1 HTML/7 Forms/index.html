@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <h2>Apply for Assistant Manager</h2>
+    <form action="/submit" method="post">
+    <div>
+        <label for = "username">Enter your username</label>
+        <input type="text" id = "username" name="username" placeholder="Enter your username" required autofocus>
+    </div>
+    <div>
+        <label for = "pass">Enter your password</label>
+        <input type="password" pattern="[a-z, 0-9]" id = "pass" name="password" placeholder="Enter your password" autofocus>
+    </div>
+    <div>
+        <label>Gender:</label>
+        <input type="radio" id = "male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id = "female" name="gender" value="female">
+        <label for="female">Female</label>
+    </div>
+    <br>
+    <div>
+        <textarea name="comment" rows="3" cols="36">
+       Enter your comment here...
+      </textarea>
+    </div>
+    <div>
+        <br>
+        <select name="fruits">
+            <option value="Mango">Mango</option>
+            <option value="Strawberry">Strawberry</option>
+            <option value="Orange">Orange</option>
+      </select>
+    </div>
+    <div>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </div>
+</form>
+</body>
+</html>
