@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector</title>
+    <style>
+        /* Id selector */
+        #doom{
+            background-color: green;
+        }
+        /* Class selector */
+        .new{
+            background-color: red;
+        }
+        /* Child selector */
+        div > p{
+            color: rgb(6, 10, 247);
+            background-color: white
+        }
+        /* Decendent selector */
+        div h3{
+            color: rgb(247, 6, 6);
+            background-color: white;
+        }
+        /* Universal selector */
+        *{
+            margin: 0.5;
+            padding: 0;
+        }
+        /* Pseudo selector */
+        article:hover{
+            background-color: yellow;
+        }
+        a:visited{
+            color: red;
+        }
+        a:link{
+            color: green;
+        }
+        a:active{
+            background-color: black;
+        }
+        p:first-child{
+            color: grey;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://www.youtube.com">Click me</a>
+    <div id="doom">
+        Hi how are you?
+        <p><b>Captain America</b></p>
+    </div>
+    <div class="new">
+        I am Iron Man (ohhhh)
+    </div>
+    <div>
+        <article>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas odio sunt asperiores sequi quos quas, non tenetur tempora, maiores maxime deleniti dolor nemo ducimus. Hic.
+            <h3>Thor</h3>
+            <p>Hattttt</p>
+        </article>
+    </div>
+</body>
+</html>

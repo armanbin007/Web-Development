@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS</title>
+
+    <!-- So, the order of specificity is: -->
+
+<!-- Inline Style > ID Selector > Class or Attribute Selector > Element Selector > Universal Selector -->
+    <style>
+        h1{
+            color: rgb(0, 95, 0);
+        }
+        .cyellow {
+            color: yellow;
+        }
+        .cpurple {
+            color: rgb(5, 140, 186);
+        }
+        .cred {
+            color: rgb(133, 0, 0);
+        }
+        [data-x=a]{ /* Attribute Selector */
+            color: grey;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 data-x="a"; class="cyellow cpurple cred" >Casscade Algorithm</h1>
+</body>
+</html>
+
+
+<!-- Specificity Calculation
+Specificity higher means that is being implemented
+To calculate specificity, assign a value to each part of the selector:
+
+    Universal Selector: 0
+    Element selectors and pseudo-elements: 1
+    Class selectors, attribute selectors, and pseudo-classes: 10
+    ID selectors: 100
+    Inline styles: 1000
+    !important: 10000 -->

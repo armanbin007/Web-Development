@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box</title>
+    <!--Margin collapses because it chooses the max margin-->
+    <style>
+        .box{
+            color: red;
+        }
+        .box1{
+            color: rgb(31, 137, 80);
+            padding: 10px;
+            margin: 25px;
+            border: 2px solid blue;
+            box-sizing: border-box;
+        } 
+        .box2{
+            color: red;
+            padding: 10px;
+            margin: 25px;  
+            border: 2px solid black;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="box box1">
+        <p>Box no 1</p>
+    </div>
+    <div class="box box2">
+        <p>Box no 2</p>
+    </div>
+</body>
+</html>
