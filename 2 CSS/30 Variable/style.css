@@ -1,0 +1,28 @@
+:root{
+    --color: rgb(70, 131, 200);
+    --secColor: rgb(227, 145, 51);
+}
+*{
+    margin: 0;
+    padding: 0;
+} .nav{
+    background-color: var(--color);
+} .container{
+    color: var(--secColor);
+    --color: rgb(85, 43, 43);
+    background-color: var(--color);
+} ul{
+    display: flex;
+    list-style: none;
+    
+} ul li{
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
+} ul li button{
+    background-color: var(--color);
+    color: var(--secColor);
+    border: none;
+    cursor: pointer;
+}
