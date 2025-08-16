@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Selector</title>
+    <style>
+        /* .box:first-child {
+            background-color: lightblue;
+        } */
+
+        /* .box::first-line{
+            color: blue;
+        } */
+
+        .boxes *{
+            background-color: rgb(17, 15, 15);
+            color: rgb(0, 169, 20);
+            margin: 3px;
+            padding: 15px;
+        }
+        /* attributes usage */
+        /* p,a, .box, [data-color="primary"] {
+            margin: 10px;
+        } */
+    </style>
+</head>
+<body>
+    <div class="boxes">
+        <div data-color="primary" class="box">Hey I am a Box</div>
+        <div class="box">Hey I am a Box</div>
+        <div class="box">Hey I am a Box</div>
+    </div>
+</body>
+</html>
