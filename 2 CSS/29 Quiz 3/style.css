@@ -53,9 +53,10 @@ body {
 }
 
 .button button {
-    text-align: center;
-    margin: 7px 10px 10px 10px;
+    margin: 5px 10px 10px 10px;
     padding: 7px;
+    height: 35px;
+    width: 80px;
     border-radius: 20px;
     cursor: pointer;
     background-color: rgb(205, 238, 249);
@@ -63,14 +64,16 @@ body {
     border: none;
     font-family: poppins;
     font-size: 10px;
-    height: 35px;
-    width: 80px;
     transition-duration: 0.3s;
-} 
+}
+
 .button button:hover{
     background-color: rgb(255, 0, 0);
     color: white;
-} .button button a {
+} 
+
+.button button a{
+    display: block;
     text-decoration: none;
     color: inherit;
 }
