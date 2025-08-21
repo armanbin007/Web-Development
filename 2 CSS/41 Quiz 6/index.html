@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 6</title>
+    <style>
+        *{
+            margin: 0; padding: 0;
+        } 
+
+        header{
+            background-color: white;
+            color: rgb(36, 36, 36);
+            padding: 10px 0;
+        }
+        
+        nav ul li:hover{
+            color: grey;
+        }
+        nav ul{
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        } nav ul li{
+            cursor: pointer;
+            margin: 30px;
+            padding: 5px;
+            transition-duration: 0.3s;
+        } 
+
+        .logo{
+            left: 30px;
+            top: 0;
+            position: fixed;
+        }
+         .buy{
+            border: 2px solid black;
+            border-radius: 3px;
+            padding: 10px;
+            font-weight: bold;
+            position: fixed;
+            right: 150px;
+            top: 0;
+        }
+        .lang{
+            position: fixed;
+            right: 65px;
+         }
+         .search{
+            top: -10px;
+            position: fixed;
+            right: 10px;
+            font-weight: bold;
+            font-size: 20px;
+         }
+
+         main{
+            text-align: center;
+         }
+
+         main h1{
+            font-size: 48px;
+            font-weight: normal;
+            margin-top: 80px;
+            color: rgb(36, 36, 36);
+         } 
+         main h1 img{
+            margin: 0px 0px 0px 20px;
+         }
+         main h3{
+            font-weight: normal;
+            margin: 40px;
+            font-size: 20px;
+            word-wrap: normal;
+         }
+
+         div.download{
+            background-color: #09a6bd;
+            color: white;
+            padding: 15px 10px;
+            width: 270px;
+            border-radius: 5px;
+            font-weight: bolder;
+            font-size: 14px;
+            cursor: pointer;
+            transition-duration: 0.3s;
+            margin: 0 auto;
+         }
+            div.download:hover{
+                background-color: #0b8a9c;
+            }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="logo">
+                    <img src="https://www.ultraedit.com/wp-content/uploads/2023/01/Frame-1-2.png" width="150px">
+                </li>
+                <li>Products</li>
+                <li>Pricing</li>
+                <li>Resources</li>
+                <li>Our company</li>
+                <li class="buy">BUY NOW</li>
+                <li class="lang">English</li>
+                <li class="search">
+                    <img src="images.jpg" width="50px">
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Download <b>UltraEdit</b> for Windows <img src="https://www.ultraedit.com/wp-content/uploads/2022/10/Reviews.png" > </h1>
+        <h3>Download and try UltraEdit before you buy it! This download includes the full Windows version of the text editor.</h3>
+
+        <div class="download">DOWNLOAD MAC OR LINUX VERSION</div>
+    </main>
+</body>
+</html>
