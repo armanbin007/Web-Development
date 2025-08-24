@@ -1,0 +1,158 @@
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI';
+    }
+
+    .sec3{
+        max-width: 50%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .item {
+        background-color: rgba(240, 240, 240, 0.652);
+        /* height: 180px;
+        width: 280px; */
+        padding: 10px;
+        text-align: center;
+        border-radius: 6px;
+    }
+
+    .download {
+        background-color: #5cb85c;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        height: 25px;
+        width: 120px;
+        margin: 40px auto;
+        margin-bottom: 20px;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        place-content: center;
+        align-items: center;
+    }
+
+    .download:hover {
+        background-color: #4cae4c;
+    }
+
+    .download>a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .hash {
+        font-size: 9px;
+        padding-bottom: 0;
+        color: #333;
+        word-wrap: break-word;
+    }
+
+    header {
+        background-color: white;
+        color: rgb(36, 36, 36);
+        padding: 10px 0;
+    }
+
+    nav ul li:hover {
+        color: grey;
+    }
+
+    nav ul {
+        display: flex;
+        place-content: center;
+        flex-wrap: wrap;
+        list-style: none;
+    }
+
+    nav ul li {
+        /* display: flex; */
+        place-content: center;
+        cursor: pointer;
+        margin: 30px;
+        transition-duration: 0.3s;
+    }
+
+    .logo img {
+        width: 140px;
+        margin: -20px 0 0 0;
+    }
+
+    .buy {
+        border: 2px solid black;
+        border-radius: 3px;
+        padding: 10px;
+        font-weight: bold;
+
+    }
+
+    .lang {
+        display: flex;
+        align-items: center;
+    }
+
+    .lang img {
+        width: 40px;
+    }
+
+    .search {
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    main {
+        text-align: center;
+    }
+
+    main h1 {
+        font-size: 48px;
+        font-weight: normal;
+        margin-top: 80px;
+        color: rgb(36, 36, 36);
+    }
+
+    main h1 img {
+        margin: 0px 0px 0px 10px;
+    }
+
+    .sec2 {
+        font-weight: normal;
+        margin: 40px;
+        font-size: 20px;
+        display: inline-flex;
+        width: 57vw;
+    }
+
+    div.download1 {
+        background-color: #09a6bd;
+        color: white;
+        padding: 15px 10px;
+        width: 270px;
+        border-radius: 5px;
+        font-weight: bolder;
+        font-size: 14px;
+        cursor: pointer;
+        transition-duration: 0.3s;
+        margin: 0 auto;
+    }
+
+    div.download1:hover {
+        background-color: #0b8a9c;
+    }
+
+    @media screen and (max-width: 1145px) {
+        .container{ 
+            grid-template-columns: 1fr; 
+        }
+    }

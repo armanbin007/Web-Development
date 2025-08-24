@@ -20,37 +20,36 @@
         }
         nav ul{
             display: flex;
-            justify-content: center;
+            place-content: center;
+            flex-wrap: wrap;
             list-style: none;
         } nav ul li{
+            /* display: flex; */
+            place-content: center;
             cursor: pointer;
             margin: 30px;
-            padding: 5px;
             transition-duration: 0.3s;
         } 
 
-        .logo{
-            left: 30px;
-            top: 0;
-            position: fixed;
+        .logo img{
+            width: 140px;
+            margin: -20px 0 0 0;
         }
          .buy{
             border: 2px solid black;
             border-radius: 3px;
             padding: 10px;
             font-weight: bold;
-            position: fixed;
-            right: 150px;
-            top: 0;
+            
         }
         .lang{
-            position: fixed;
-            right: 65px;
+            display: flex;
+            align-items: center;
+         }
+         .lang img{
+            width: 40px;
          }
          .search{
-            top: -10px;
-            position: fixed;
-            right: 10px;
             font-weight: bold;
             font-size: 20px;
          }
@@ -98,14 +97,14 @@
         <nav>
             <ul>
                 <li class="logo">
-                    <img src="https://www.ultraedit.com/wp-content/uploads/2023/01/Frame-1-2.png" width="150px">
+                    <img src="https://www.ultraedit.com/wp-content/uploads/2023/01/Frame-1-2.png">
                 </li>
                 <li>Products</li>
                 <li>Pricing</li>
                 <li>Resources</li>
                 <li>Our company</li>
                 <li class="buy">BUY NOW</li>
-                <li class="lang">English</li>
+                <li class="lang"><img src="https://static.vecteezy.com/system/resources/thumbnails/007/166/993/small_2x/translate-icon-flat-style-logo-template-vector.jpg">English</li>
                 <li class="search">
                     <img src="images.jpg" width="50px">
                 </li>
