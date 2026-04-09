@@ -1,0 +1,20 @@
+body {
+    background-color: black;
+    margin: 0;
+    font-family: monospace;
+}
+
+.terminal {
+    color: #00ff00;
+    padding: 20px;
+    font-size: 20px;
+}
+.line::after{
+    content: ".";
+    animation: blink 2s infinite;
+}
+@keyframes blink{
+    0% {content: "."}
+    33% {content: ".."}
+    66% {content: "..."}
+}

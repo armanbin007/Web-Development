@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container red bg-green">
+        <div id="box1" class="box">Hi I am a box</div>
+        <div class="box">Hi I am a box</div>
+        <div class="box">Hi I am a box</div>
+        <script>
+            // let div = document.createElement("div");
+            // div.innerHTML = "I am a new div created by <b>Arman</b>";
+            // div.setAttribute("class", "created");
+            // // document.querySelector(".container").append(div);
+            // document.querySelector(".container").prepend(div);
+
+            let cont = document.querySelector(".container");
+            cont.insertAdjacentHTML("beforebegin", "<b>I am added newly so dont beat me up</b>")
+
+            let id1 = document.getElementById("box1") 
+            id1.remove()
+            
+            document.querySelector(".container").classList.add("blue")
+
+            document.querySelector(".container").classList.toggle("red") 
+        </script>
+    </div>
+</body>
+</html>

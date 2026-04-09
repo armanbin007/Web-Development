@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .child{
+            border: 2px solid black;
+            padding: 15px;
+            margin: 5px;
+            border-radius: 15px;
+            background-color: lightblue;
+            cursor: pointer;
+        }
+        .childContainer{
+            border: 2px solid black;
+            padding: 15px;
+            margin: 5px;
+            border-radius: 15px;
+            background-color: rgb(6, 142, 112);
+            cursor: pointer;
+        }
+        .container{
+            border: 2px solid black;
+            padding: 15px;
+            margin: 5px;
+            border-radius: 15px;
+            background-color: rgb(255, 184, 114);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="childContainer">
+            <div class="child">
+                I am a child
+            </div>
+        </section>
+    </div>
+    <script>
+        function getRandomColor() {
+                let r = Math.floor(Math.random() * 256);
+                let g = Math.floor(Math.random() * 256);
+                let b = Math.floor(Math.random() * 256);
+                return `rgb(${r}, ${g}, ${b})`;
+}
+
+        document.querySelector(".child").addEventListener("click", (e)=>{
+            e.stopPropagation() /* Stop the event from bubbling up */
+            alert("Child was clicked")
+        })
+        document.querySelector(".childContainer").addEventListener("click", (e)=>{
+            e.stopPropagation()
+            alert("Child container was clicked")
+        })
+        document.querySelector(".container").addEventListener("click", ()=>{
+            alert("Container was clicked")
+        })
+
+        // let a = setInterval(()=>{
+        //     document.querySelector(".child").style.backgroundColor = getRandomColor()
+        // }, 2000)
+
+        let a = setTimeout(()=>{
+            document.querySelector(".child").style.backgroundColor = getRandomColor()
+        }, 1000)
+
+        // console.log(a)
+    </script>
+</body>
+</html>
