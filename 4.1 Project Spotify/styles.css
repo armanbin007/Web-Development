@@ -103,6 +103,7 @@ body {
     top: 135px;
     opacity: 0;
     transition: 0.5s ease-out;
+    cursor: pointer;
 }
 .play:hover{
     opacity: 1;
@@ -180,4 +181,45 @@ body {
     flex-wrap: wrap;
     padding: 12px;
     background-color: #0e6712;
+
+}
+.playbtns{
+    gap: 18px;
+    display: flex;
+    justify-content: center;
+    
+}
+.playbtns img{
+    cursor: pointer;
+}
+.songList{
+    height: 644px;
+    overflow: auto;
+    margin-bottom: 10px;
+}
+.songList ul{
+    padding: 0 12px;
+}
+.songList ul li{
+    list-style-type: decimal;
+    gap: 15px;
+    border: 1px solid white;
+    margin: 12px 0;
+    padding: 13px;
+    border-radius: 5px;
+    display: flex;
+}
+.songList .info{
+    cursor: pointer;
+    font-size: 13px;
+    width: 250px;
+}
+.playnow{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    cursor: pointer;
+}
+.playnow span{
+    width: 80px;
 }
