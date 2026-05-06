@@ -1,5 +1,7 @@
 console.log('Hiiii');
 let songs;
+let currFolder;
+
 function formatTime(seconds) {
     if (isNaN(seconds) || seconds < 0) {
         return "00:00";
@@ -15,8 +17,9 @@ function formatTime(seconds) {
 }
 
 let currentSong = new Audio();
-async function getSongs(){
-    let a = await fetch("http://127.0.0.1:3000/songs/")
+async function getSongs(folder){
+    currFolder = folder;
+    let a = await fetch(`http://127.0.0.1:3000/${currFolder}`)
     let response = await a.text();
     // console.log(response)
     let div = document.createElement("div")
@@ -31,8 +34,9 @@ async function getSongs(){
     } return songs;
 }
 
+
 const playMusic = (track, pause = false)=>{
-    currentSong.src = "/songs/" + track
+    currentSong.src = `/${currFolder}/` + track
     if(!pause){
         currentSong.play()
         play.src = "pause.svg"
@@ -47,8 +51,8 @@ const playMusic = (track, pause = false)=>{
 }
 
 async function main(){
-    songs = await getSongs();
-    console.log(songs);
+    songs = await getSongs("songs");
+    // console.log(songs);
     playMusic(songs[0], true)
 
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0]
@@ -73,7 +77,7 @@ async function main(){
     // Attach an event listener to each song
     Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach(e=>{
     e.addEventListener("click", element=>{
-        console.log(e.querySelector(".info").firstElementChild.innerHTML);
+        // console.log(e.querySelector(".info").firstElementChild.innerHTML);
         playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim())
         })
     })
@@ -81,6 +85,7 @@ async function main(){
 
     // Attach an event listener to prev,play,next
     play.addEventListener("click", ()=>{
+        
         if(currentSong.paused){
             currentSong.play()
             play.src = "pause.svg"
@@ -90,7 +95,7 @@ async function main(){
         }
     })
     prev.addEventListener("click", ()=>{
-        console.log('Prev Clicked');
+        // console.log('Prev Clicked');
         let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
         console.log(songs, index);
         if((index - 1) >= 0){
@@ -99,7 +104,7 @@ async function main(){
         
     })
     next.addEventListener("click", ()=>{
-        console.log('Next Clicked');
+        // console.log('Next Clicked');
         let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
         console.log(songs, index);
         if((index + 1) < songs.length){
@@ -109,7 +114,7 @@ async function main(){
 
     // Timeupdate event
     currentSong.addEventListener("timeupdate", ()=>{
-        console.log(currentSong.currentTime, currentSong.duration);
+        // console.log(currentSong.currentTime, currentSong.duration);
         document.querySelector(".songTime").innerHTML = `${formatTime(currentSong.currentTime)}/${formatTime(currentSong.duration)}`
         document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
     })
@@ -130,5 +135,11 @@ async function main(){
         document.querySelector(".left").style.left = "-100%";
     })
 
+    // Volume
+    document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e)=>{
+        // console.log(e.target.value);
+        currentSong.volume = parseInt(e.target.value)/100;
+    })
+    
 main();
 
