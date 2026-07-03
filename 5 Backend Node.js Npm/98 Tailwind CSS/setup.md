@@ -5,7 +5,7 @@
     ```
     npm install tailwindcss @tailwindcss/cli 
     ```
-2. create src/input.css and output.css
+2. create src/input.css
     ```
    @import "tailwindcss"; in input.css
    ```

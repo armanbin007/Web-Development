@@ -1,0 +1,14 @@
+nav, ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+li{
+    list-style: none;
+} ul{
+    gap: 20%;
+}
+nav{
+    background-color: beige;
+    padding: 1%;
+}
