@@ -81,6 +81,4 @@ This project is open source and available for learning purposes. Feel free to ex
 
 ---
 
-<p align="center">Built with 💻 and curiosity by <a href="https://github.com/armanbin007">armanbin007</a></p>
-
-<p>Thanks to CodeWithHarry</p>
+<p align="center">Built with 💻 and curiosity by <a href="https://github.com/armanbin007">armanbin007</a> with the guidance of <a href="https://github.com/codewithharry">CodeWithHarry</a></p>
