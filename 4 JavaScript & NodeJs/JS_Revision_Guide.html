@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Revision — Arman's Course Recap</title>
+<style>
+  :root{
+    --bg: #0f1115;
+    --panel: #171a21;
+    --panel2: #1e222b;
+    --border: #2a2f3a;
+    --text: #e6e8ee;
+    --muted: #8b93a3;
+    --accent: #f0b429;
+    --accent2: #57c785;
+    --code-bg: #0b0d12;
+    --danger: #ff6b6b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height:1.55;
+  }
+  header{
+    padding:36px 24px 20px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+    background:linear-gradient(180deg, #171a21, #0f1115);
+  }
+  header h1{
+    margin:0 0 6px;
+    font-size:1.8rem;
+    letter-spacing:.3px;
+  }
+  header p{
+    margin:0;
+    color:var(--muted);
+    font-size:.95rem;
+  }
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:24px;
+  }
+  nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:28px;
+    padding:14px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:10px;
+    position:sticky;
+    top:12px;
+    z-index:5;
+  }
+  nav a{
+    color:var(--text);
+    text-decoration:none;
+    font-size:.8rem;
+    padding:6px 10px;
+    border-radius:6px;
+    background:var(--panel2);
+    border:1px solid var(--border);
+    white-space:nowrap;
+  }
+  nav a:hover{ border-color:var(--accent); color:var(--accent);}
+  section{
+    margin-bottom:34px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  section > .head{
+    padding:16px 20px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:10px;
+  }
+  section > .head h2{
+    margin:0;
+    font-size:1.15rem;
+  }
+  section > .head span{
+    color:var(--muted);
+    font-size:.75rem;
+  }
+  .body{ padding:18px 20px; }
+  .note{
+    background:#1b2430;
+    border-left:3px solid var(--accent2);
+    padding:10px 14px;
+    border-radius:6px;
+    font-size:.88rem;
+    color:#cfe8d9;
+    margin:12px 0;
+  }
+  .warn{
+    background:#2b1c1c;
+    border-left:3px solid var(--danger);
+    padding:10px 14px;
+    border-radius:6px;
+    font-size:.88rem;
+    color:#f3caca;
+    margin:12px 0;
+  }
+  .demo{
+    background:var(--code-bg);
+    border:1px solid var(--border);
+    border-radius:8px;
+    margin:12px 0;
+    overflow:hidden;
+  }
+  .demo .filebar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:6px 12px;
+    background:#12151b;
+    border-bottom:1px solid var(--border);
+    font-size:.72rem;
+    color:var(--muted);
+  }
+  .demo pre{
+    margin:0;
+    padding:14px;
+    overflow-x:auto;
+    font-family: 'Fira Code', Consolas, monospace;
+    font-size:.83rem;
+    color:#d6e0f0;
+  }
+  .demo .controls{
+    display:flex;
+    gap:8px;
+    padding:10px 12px;
+    border-top:1px solid var(--border);
+    background:#12151b;
+  }
+  button.run{
+    background:var(--accent2);
+    color:#08150d;
+    border:none;
+    padding:6px 14px;
+    border-radius:6px;
+    font-weight:600;
+    font-size:.78rem;
+    cursor:pointer;
+  }
+  button.run:hover{ filter:brightness(1.1); }
+  .output{
+    display:none;
+    background:#05070a;
+    border-top:1px solid var(--border);
+    padding:10px 14px;
+    font-family: Consolas, monospace;
+    font-size:.8rem;
+    color:#9ee6a0;
+    white-space:pre-wrap;
+  }
+  .kw{ color:var(--accent);}
+  .fn{ color:#7fb8f0;}
+  ul{ padding-left:20px; }
+  li{ margin-bottom:4px; font-size:.92rem;}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.85rem;
+    margin:10px 0;
+  }
+  th, td{
+    border:1px solid var(--border);
+    padding:7px 10px;
+    text-align:left;
+  }
+  th{ background:var(--panel2); color:var(--accent);}
+  code.inline{
+    background:#20242e;
+    padding:2px 6px;
+    border-radius:4px;
+    font-size:.85em;
+    color:#f0b429;
+  }
+  .tag{
+    display:inline-block;
+    font-size:.68rem;
+    padding:2px 8px;
+    border-radius:20px;
+    background:#20242e;
+    color:var(--muted);
+    margin-left:6px;
+  }
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:.8rem;
+    padding:30px 10px 50px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🧠 JavaScript Full Revision</h1>
+  <p>Rebuilt from your course files (topics 54 → 83) · Every code box is live — hit "Run" to see real output</p>
+</header>
+
+<div class="wrap">
+
+<nav>
+  <a href="#vars">Vars & Objects</a>
+  <a href="#cond">Conditionals</a>
+  <a href="#loops">Loops</a>
+  <a href="#func">Functions</a>
+  <a href="#strings">Strings</a>
+  <a href="#arrays">Arrays</a>
+  <a href="#recursion">Recursion</a>
+  <a href="#dom">DOM</a>
+  <a href="#events">Events</a>
+  <a href="#async">Callbacks/Promises</a>
+  <a href="#asyncawait">Async/Await/Fetch</a>
+  <a href="#trycatch">Try/Catch</a>
+  <a href="#oop">OOP</a>
+  <a href="#advanced">Destructuring/IIFE</a>
+  <a href="#cheatsheet">Cheat Sheet</a>
+</nav>
+
+<section id="vars">
+  <div class="head"><h2>1. Variables, Data Types & Objects</h2><span>Topic 55</span></div>
+  <div class="body">
+    <ul>
+      <li><code class="inline">var</code> → function-scoped, hoisted, avoid using in modern JS.</li>
+      <li><code class="inline">let</code> → block-scoped, can be reassigned.</li>
+      <li><code class="inline">const</code> → block-scoped, cannot be reassigned (but object contents can still change).</li>
+      <li>A <b>block</b> <code class="inline">{ }</code> creates a new scope for <code class="inline">let</code>/<code class="inline">const</code> — that's why the inner <code class="inline">a</code> doesn't clash with the outer one.</li>
+    </ul>
+    <div class="demo">
+      <div class="filebar">script.js</div>
+      <pre id="src-vars">let a = 35;
+let b = 20;
+
+{
+  let a = 900; // shadows outer 'a' only inside this block
+  console.log("inner a:", a);
+}
+console.log("outer a:", a);
+
+let o = {
+  "name": "Programmer",
+  "job code": 530,
+  "area": "Europe"
+};
+console.log(o);
+o.salary = "1 lac"; // objects can gain new props even with const/let
+console.log(o);</pre>
+      <div class="controls"><button class="run" data-src="src-vars" data-out="out-vars">▶ Run</button></div>
+      <div class="output" id="out-vars"></div>
+    </div>
+    <div class="note">Key idea: object properties can always be added/changed even when the object itself was declared with <code class="inline">const</code> — const only locks the variable binding, not the contents.</div>
+  </div>
+</section>
+
+<section id="cond">
+  <div class="head"><h2>2. Conditionals & Ternary</h2><span>Topic 56</span></div>
+  <div class="body">
+    <div class="demo">
+      <div class="filebar">script.js</div>
+      <pre id="src-cond">let age = 19;
+
+if (age > 18) {
+  console.log("You can drive");
+} else {
+  console.log("You can't drive");
+}
+
+let a = 16, b = 15;
+let c = a > b ? (a - b) : (b - a); // condition ? ifTrue : ifFalse
+console.log("difference:", c);</pre>
+      <div class="controls"><button class="run" data-src="src-cond" data-out="out-cond">▶ Run</button></div>
+      <div class="output" id="out-cond"></div>
+    </div>
+    <div class="note">Ternary <code class="inline">cond ? a : b</code> works exactly like C/C++ — good for short one-line decisions instead of a full if/else.</div>
+  </div>
+</section>
+
+<section id="loops">
+  <div class="head"><h2>3. Loops</h2><span>Topic 57</span></div>
+  <div class="body">
+    <table>
+      <tr><th>Loop</th><th>Best for</th></tr>
+      <tr><td><code class="inline">for (let i=0;...)</code></td><td>Known number of iterations, need the index</td></tr>
+      <tr><td><code class="inline">for...in</code></td><td>Iterating <b>keys</b> of an object</td></tr>
+      <tr><td><code class="inline">for...of</code></td><td>Iterating <b>values</b> of arrays/strings/iterables</td></tr>
+      <tr><td><code class="inline">while</code></td><td>Unknown iterations, condition checked first</td></tr>
+      <tr><td><code class="inline">do...while</code></td><td>Same but runs body at least once</td></tr>
+    </table>
+    <div class="demo">
+      <div class="filebar">script.js</div>
+      <pre id="src-loops">let obj = { Name: "Arman", Age: 21, DOB: "25/12/2004" };
+
+for (const key in obj) { // keys of object
+  console.log("key:", key);
+}
+
+for (const c of "arman") { // characters of string
+  console.log("char:", c);
+}
+
+let i = 5;
+while (i < 6) {
+  console.log("while i =", i);
+  i++;
+}
+
+let z = 0;
+do {
+  console.log("do-while z =", z);
+  z++;
+} while (z < 3);</pre>
+      <div class="controls"><button class="run" data-src="src-loops" data-out="out-loops">▶ Run</button></div>
+      <div class="output" id="out-loops"></div>
+    </div>
+  </div>
+</section>
+
+<section id="func">
+  <div class="head"><h2>4. Functions</h2><span>Topic 58</span></div>
+  <div class="body">
+    <ul>
+      <li><b>Function declaration</b> — hoisted, can be called before it's defined.</li>
+      <li><b>Arrow function</b> — shorter syntax, doesn't bind its own <code class="inline">this</code>.</li>
+    </ul>
+    <div class="demo">
+      <div class="filebar">script.js</div>
+      <pre id="src-func">function nice(name) {
+  console.log("Hey " + name + " you are nice");
+}
+nice("Arman");
+
+function sum(a, b) {
+  return a + b;
+}
+console.log("Sum:", sum(2, 5));
+
+const func1 = (x) => { // arrow function
+  console.log("I'm an arrow function", x);
+};
+func1(2026);</pre>
+      <div class="controls"><button class="run" data-src="src-func" data-out="out-func">▶ Run</button></div>
+      <div class="output" id="out-func"></div>
+    </div>
+  </div>
+</section>
+
+<section id="strings">
+  <div class="head"><h2>5. Strings & Template Literals</h2><span>Topic 60</span></div>
+  <div class="body">
+    <table>
+      <tr><th>Method</th><th>What it does</th></tr>
+      <tr><td><code class="inline">`${var}`</code></td><td>Template literal — embed variables/expressions directly in a string</td></tr>
+      <tr><td><code class="inline">.slice(start,end)</code></td><td>Extracts a substring, doesn't mutate original</td></tr>
+      <tr><td><code class="inline">.replace(old,new)</code></td><td>Replaces first match of old with new</td></tr>
+      <tr><td><code class="inline">.trim()</code></td><td>Removes whitespace from both ends</td></tr>
+    </table>
+    <div class="demo">
+      <div class="filebar">script.js</div>
+      <pre id="src-str">let xname = "   John";
+let friend = "Jasmine";
+
+console.log(`Hi I am ${xname} and my friend is ${friend}`);
+console.log(friend.slice(1, 5));
+console.log(friend.replace("Jas", "Prit"));
+console.log("[" + xname.trim() + "]");</pre>
+      <div class="controls"><button class="run" data-src="src-str" data-out="out-str">▶ Run</button></div>
+      <div class="output" id="out-str"></div>
+    </div>
+  </div>
+</section>
+
+<section id="arrays">
+  <div class="head"><h2>6. Arrays — the big one</h2><span>Topic 63</span></div>
+  <div class="body">
+    <table>
+      <tr><th>Method</th><th>Effect</th></tr>
+      <tr><td><code class="inline">.push() / .pop()</code></td><td>Add/remove from the <b>end</b></td></tr>
+      <tr><td><code class="inline">.shift() / .unshift()</code></td><td>Remove/add from the <b>start</b></td></tr>
+      <tr><td><code class="inline">.concat()</code></td><td>Returns a <b>new</b> merged array, doesn't mutate</td></tr>
+      <tr><td><code class="inline">.sort()</code></td><td>Sorts in place (careful: sorts as strings by default!)</td></tr>
+      <tr><td><code class="inline">.splice(i,count,...items)</code></td><td>Removes/inserts elements <b>in place</b> at index i</td></tr>
+      <tr><td><code class="inline">.forEach((v,i,arr)=>{})</code></td><td>Loop, no return value</td></tr>
+      <tr><td><code class="inline">.map((e)=>{})</code></td><td>Transforms every element → new array</td></tr>
+      <tr><td><code class="inline">.filter((e)=>{})</code></td><td>Keeps elements where callback returns true</td></tr>
+      <tr><td><code class="inline">.reduce((acc,cur)=>{})</code></td><td>Folds array down to a single value</td></tr>
+    </table>
+    <div class="demo">
+      <div class="filebar">index.js</div>
+      <pre id="src-arr1">let arr = [199, 2, 3, 4, 5];
+console.log("length:", arr.length);
+console.log("shift ->", arr.shift()); // removes & returns first
+console.log("after shift:", arr);
+console.log("unshift ->", arr.unshift(10)); // adds to front, returns new length
+console.log("after unshift:", arr);
+delete arr[4]; // leaves a hole (empty slot), doesn't resize
+console.log("after delete:", arr);
+
+let a = [39, 90, 1, 35, 55];
+console.log("concat ->", arr.concat(a)); // new array, originals untouched
+console.log("sort ->", a.sort());
+console.log("splice ->", a.splice(1, 3, 5, 7, 10)); // removed items returned
+console.log("a after splice:", a);</pre>
+      <div class="controls"><button class="run" data-src="src-arr1" data-out="out-arr1">▶ Run</button></div>
+      <div class="output" id="out-arr1"></div>
+    </div>
+
+    <div class="demo">
+      <div class="filebar">index3 map.js</div>
+      <pre id="src-arr2">let x = [1, 5, 10, 20];
+
+let squares = x.map((e) => e ** 2);
+console.log("map (squares):", squares);
+
+const greaterThanSeven = (e) => e > 7;
+console.log("filter (>7):", x.filter(greaterThanSeven));
+
+let xyz = [1, 2, 3, 4, 5];
+const mul = (a, b) => a * b;
+console.log("reduce (product):", xyz.reduce(mul));</pre>
+      <div class="controls"><button class="run" data-src="src-arr2" data-out="out-arr2">▶ Run</button></div>
+      <div class="output" id="out-arr2"></div>
+    </div>
+    <div class="warn">Gotcha from your file: <code class="inline">.sort()</code> with no compare function sorts <b>lexicographically</b> (as strings), so <code class="inline">[10, 2, 1]</code> can sort to <code class="inline">[1, 10, 2]</code>. For numeric sort use <code class="inline">arr.sort((a,b)=>a-b)</code>.</div>
+  </div>
+</section>
+
+<section id="recursion">
+  <div class="head"><h2>7. Recursion — Factorial</h2><span>Topic 65</span></div>
+  <div class="body">
+    <p>A recursive function calls <b>itself</b> with a smaller input until it hits a <b>base case</b> that stops it.</p>
+    <div class="demo">
+      <div class="filebar">script.js</div>
+      <pre id="src-rec">function factorial(x) {
+  if (x < 0) return;
+  if (x <= 1) return 1;      // base case
+  return x * factorial(x - 1); // recursive case
+}
+console.log("5! =", factorial(5));
+
+// Iterative alternative using reduce
+function fac(x) {
+  let arr = Array.from(Array(x + 1).keys()); // [0,1,2,...,x]
+  return arr.slice(1).reduce((a, b) => a * b);
+}
+console.log("6! (iterative) =", fac(6));</pre>
+      <div class="controls"><button class="run" data-src="src-rec" data-out="out-rec">▶ Run</button></div>
+      <div class="output" id="out-rec"></div>
+    </div>
+  </div>
+</section>
+
+<section id="dom">
+  <div class="head"><h2>8. DOM Manipulation</h2><span>Topics 66, 67, 68, 70, 71, 73</span></div>
+  <div class="body">
+    <table>
+      <tr><th>Selector / API</th><th>Returns</th></tr>
+      <tr><td><code class="inline">document.getElementById("id")</code></td><td>Single element</td></tr>
+      <tr><td><code class="inline">document.getElementsByClassName("c")</code></td><td>Live HTMLCollection</td></tr>
+      <tr><td><code class="inline">document.querySelector(".c")</code></td><td>First matching element</td></tr>
+      <tr><td><code class="inline">document.querySelectorAll(".c")</code></td><td>Static NodeList (can <code class="inline">.forEach</code>)</td></tr>
+      <tr><td><code class="inline">el.childNodes / .firstElementChild / .lastElementChild / .parentElement</code></td><td>Tree navigation</td></tr>
+      <tr><td><code class="inline">el.style.property</code></td><td>Inline CSS</td></tr>
+      <tr><td><code class="inline">el.innerHTML / .innerText</code></td><td>Read or replace content</td></tr>
+      <tr><td><code class="inline">document.createElement("div")</code></td><td>New element (not yet in the page)</td></tr>
+      <tr><td><code class="inline">parent.append(el)</code></td><td>Inserts element into the DOM</td></tr>
+    </table>
+    <p><b>From your Color Boxes project</b> — a reusable random color generator:</p>
+    <div class="demo">
+      <div class="filebar">dom.js</div>
+      <pre id="src-dom">function getRandomColor() {
+  let r = Math.floor(Math.random() * 256);
+  let g = Math.floor(Math.random() * 256);
+  let b = Math.floor(Math.random() * 256);
+  return `rgb(${r}, ${g}, ${b})`;
+}
+console.log(getRandomColor());
+console.log(getRandomColor());</pre>
+      <div class="controls"><button class="run" data-src="src-dom" data-out="out-dom">▶ Run</button></div>
+      <div class="output" id="out-dom"></div>
+    </div>
+    <div class="note">In the real DOM examples you wrote (topics 66-71) these selectors act on the live page — e.g. <code class="inline">document.querySelectorAll(".box").forEach(e => e.style.backgroundColor = "teal")</code>. They can't run in this sandboxed box since there's no page markup here, but the logic above is identical.</div>
+    <p><b>Dynamic Website Builder</b> pattern (topic 73) — building HTML with a template literal and injecting it:</p>
+    <div class="demo">
+      <div class="filebar">script.js</div>
+      <pre id="src-dom2">function createCard(title, views) {
+  let viewStr = views >= 1000000
+    ? (views / 1000000) + "M views"
+    : (views / 1000) + "K views";
+  let html = `&lt;div class="card"&gt;&lt;h2&gt;${title}&lt;/h2&gt;&lt;p&gt;${viewStr}&lt;/p&gt;&lt;/div&gt;`;
+  return html;
+}
+console.log(createCard("My Video", 5000000));</pre>
+      <div class="controls"><button class="run" data-src="src-dom2" data-out="out-dom2">▶ Run</button></div>
+      <div class="output" id="out-dom2"></div>
+    </div>
+  </div>
+</section>
+
+<section id="events">
+  <div class="head"><h2>9. Events & Bubbling</h2><span>Topic 74</span></div>
+  <div class="body">
+    <ul>
+      <li><code class="inline">el.addEventListener("click", callback)</code> — attach a handler.</li>
+      <li><code class="inline">document.addEventListener("keydown", e => e.key)</code> — global key capture.</li>
+      <li><b>Event bubbling</b>: a click on a child also fires listeners on its parents, unless you call <code class="inline">e.stopPropagation()</code>.</li>
+      <li><code class="inline">setTimeout(fn, ms)</code> runs once after a delay; <code class="inline">setInterval(fn, ms)</code> runs repeatedly.</li>
+    </ul>
+    <div class="note">Your event-bubbling demo: clicking the inner <code class="inline">.child</code> div (with <code class="inline">stopPropagation()</code>) alerts only "Child was clicked" — without it, the click would also bubble up and trigger the <code class="inline">.childContainer</code> and <code class="inline">.container</code> listeners.</div>
+  </div>
+</section>
+
+<section id="async">
+  <div class="head"><h2>10. Callbacks & Promises</h2><span>Topic 75</span></div>
+  <div class="body">
+    <ul>
+      <li>A <b>callback</b> is a function passed into another function to be run later (e.g. after a script loads).</li>
+      <li>A <b>Promise</b> represents a value that will exist eventually — it's <code class="inline">pending</code>, then settles as <code class="inline">resolved</code> or <code class="inline">rejected</code>.</li>
+      <li><code class="inline">.then()</code> handles success, <code class="inline">.catch()</code> handles failure.</li>
+      <li><code class="inline">Promise.all([...])</code> — waits for all, rejects if any one rejects.</li>
+      <li><code class="inline">Promise.any([...])</code> — resolves as soon as any one resolves.</li>
+      <li><code class="inline">Promise.race([...])</code> — settles as soon as the first one settles (win or lose).</li>
+      <li><code class="inline">Promise.allSettled([...])</code> — waits for all, never short-circuits, gives status of each.</li>
+    </ul>
+    <div class="demo">
+      <div class="filebar">promise.js</div>
+      <pre id="src-prom">let prom1 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("Done! (prom1)"), 300);
+});
+let prom2 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("Done! (prom2)"), 100);
+});
+
+Promise.any([prom1, prom2])
+  .then((a) => console.log("First to resolve:", a))
+  .catch((e) => console.log("error:", e));</pre>
+      <div class="controls"><button class="run" data-src="src-prom" data-out="out-prom">▶ Run</button></div>
+      <div class="output" id="out-prom"></div>
+    </div>
+  </div>
+</section>
+
+<section id="asyncawait">
+  <div class="head"><h2>11. Async/Await & Fetch API</h2><span>Topic 76</span></div>
+  <div class="body">
+    <ul>
+      <li><code class="inline">async function</code> always returns a Promise.</li>
+      <li><code class="inline">await</code> pauses execution inside an async function until the Promise settles.</li>
+      <li><code class="inline">fetch(url, options)</code> makes an HTTP request; <code class="inline">await res.json()</code> or <code class="inline">.text()</code> reads the body.</li>
+    </ul>
+    <div class="demo">
+      <div class="filebar">script.js</div>
+      <pre id="src-await">function sleep(ms, value) {
+  return new Promise(resolve => setTimeout(() => resolve(value), ms));
+}
+
+async function runX() {
+  console.log("Fetching data...");
+  let data = await sleep(300, "Data received"); // waits before continuing
+  console.log(data);
+  console.log("Process finished");
+}
+runX();</pre>
+      <div class="controls"><button class="run" data-src="src-await" data-out="out-await">▶ Run</button></div>
+      <div class="output" id="out-await"></div>
+    </div>
+    <div class="note">Your actual API version used <code class="inline">fetch('https://jsonplaceholder.typicode.com/posts', &#123; method: 'POST', body: JSON.stringify(&#123;...&#125;), headers: &#123;'Content-type':'application/json'&#125; &#125;)</code> — same idea, just a real network call instead of <code class="inline">sleep()</code>.</div>
+  </div>
+</section>
+
+<section id="trycatch">
+  <div class="head"><h2>12. Try / Catch / Finally</h2><span>Topic 79</span></div>
+  <div class="body">
+    <ul>
+      <li><code class="inline">try</code> — code that might throw an error.</li>
+      <li><code class="inline">catch (error)</code> — runs only if something inside try throws.</li>
+      <li><code class="inline">finally</code> — always runs, error or not (good for cleanup).</li>
+      <li><code class="inline">throw new Error("msg")</code> — manually raise an error.</li>
+    </ul>
+    <div class="demo">
+      <div class="filebar">script.js</div>
+      <pre id="src-try">function lama(sum) {
+  try {
+    if (isNaN(sum)) {
+      throw new Error("Please enter valid numbers");
+    }
+    console.log(`The sum is: ${sum}`);
+    return true;
+  } catch (error) {
+    console.log("Error:", error.message);
+    return false;
+  } finally {
+    console.log("Files are being closed");
+  }
+}
+lama(15);
+lama(NaN);</pre>
+      <div class="controls"><button class="run" data-src="src-try" data-out="out-try">▶ Run</button></div>
+      <div class="output" id="out-try"></div>
+    </div>
+  </div>
+</section>
+
+<section id="oop">
+  <div class="head"><h2>13. Object-Oriented JS</h2><span>Topic 80</span></div>
+  <div class="body">
+    <table>
+      <tr><th>Keyword</th><th>Meaning</th></tr>
+      <tr><td><code class="inline">class</code></td><td>Blueprint for creating objects</td></tr>
+      <tr><td><code class="inline">constructor()</code></td><td>Runs when <code class="inline">new</code> creates an instance</td></tr>
+      <tr><td><code class="inline">extends</code></td><td>Inherit from a parent class</td></tr>
+      <tr><td><code class="inline">super()</code></td><td>Calls the parent's constructor/method</td></tr>
+      <tr><td><code class="inline">static</code></td><td>Method belongs to the class, not instances</td></tr>
+      <tr><td><code class="inline">get / set</code></td><td>Custom read/write logic for a property</td></tr>
+      <tr><td><code class="inline">__proto__</code></td><td>Legacy way to view/set the prototype link</td></tr>
+    </table>
+    <div class="demo">
+      <div class="filebar">script.js + get_set.js</div>
+      <pre id="src-oop">class Animal {
+  constructor(name) {
+    this.name = name;
+    console.log(name, "object created");
+  }
+  static eats() { // called via Animal.eats(), not on instances
+    console.log("Animals eat");
+  }
+}
+
+class Lion extends Animal {
+  constructor(name) {
+    super(name); // must call before using 'this'
+    console.log("...and it's a lion");
+  }
+  eats() { // method overriding
+    console.log(this.name, "roars while eating");
+  }
+}
+
+let x = new Lion("Simba");
+x.eats();
+Animal.eats();
+
+class Data {
+  constructor(name) { this.name = name; }
+  get name() { return this._name; }
+  set name(x) {
+    if (x.length < 4) { console.log("Name too short"); return; }
+    this._name = x;
+  }
+}
+let user = new Data("Arman");
+console.log(user.name);
+user.name = "Al"; // triggers the setter's validation</pre>
+      <div class="controls"><button class="run" data-src="src-oop" data-out="out-oop">▶ Run</button></div>
+      <div class="output" id="out-oop"></div>
+    </div>
+  </div>
+</section>
+
+<section id="advanced">
+  <div class="head"><h2>14. Destructuring, Spread/Rest & IIFE</h2><span>Topic 82</span></div>
+  <div class="body">
+    <ul>
+      <li><b>Array destructuring</b>: <code class="inline">let [x, y, ...rest] = arr</code></li>
+      <li><b>Object destructuring</b>: <code class="inline">let {a, b} = obj</code> — pulls named properties out.</li>
+      <li><b>Spread</b> <code class="inline">...arr</code> — expands an array into individual elements (e.g. as function args).</li>
+      <li><b>Rest</b> — same <code class="inline">...</code> syntax but collects remaining items into an array.</li>
+      <li><b>IIFE</b> (Immediately Invoked Function Expression): <code class="inline">(function(){...})()</code> — defines and runs a function instantly, often to create a private scope or to use <code class="inline">await</code> at the top level.</li>
+    </ul>
+    <div class="demo">
+      <div class="filebar">Destructuring.js + IIFE.js</div>
+      <pre id="src-adv">let [x, y, ...rest] = [1, 5, 7, 8, 9];
+console.log(x, y, rest);
+
+let obj = { a: 60, b: 98, c: 10 };
+let { a, b } = obj;
+console.log(a, b);
+
+function sum(a, b, c) { return a + b + c; }
+let arr = [1, 5, 6];
+console.log(sum(...arr)); // spread expands array into 3 args
+
+function sleep() {
+  return new Promise(resolve => setTimeout(() => resolve(45), 200));
+}
+
+(async function main() { // IIFE so we can use await immediately
+  let result = await sleep();
+  console.log("IIFE result:", result);
+})();</pre>
+      <div class="controls"><button class="run" data-src="src-adv" data-out="out-adv">▶ Run</button></div>
+      <div class="output" id="out-adv"></div>
+    </div>
+  </div>
+</section>
+
+<section id="cheatsheet">
+  <div class="head"><h2>📋 Quick Cheat Sheet — Every Core Function You Used</h2></div>
+  <div class="body">
+    <table>
+      <tr><th>Category</th><th>Functions / Methods</th></tr>
+      <tr><td>Console & Input</td><td><code class="inline">console.log</code>, <code class="inline">alert</code>, <code class="inline">prompt</code>, <code class="inline">confirm</code>, <code class="inline">eval</code></td></tr>
+      <tr><td>Numbers</td><td><code class="inline">Math.random()</code>, <code class="inline">Math.floor()</code>, <code class="inline">parseInt()</code>, <code class="inline">isNaN()</code></td></tr>
+      <tr><td>Strings</td><td><code class="inline">.slice()</code>, <code class="inline">.replace()</code>, <code class="inline">.trim()</code>, template literals</td></tr>
+      <tr><td>Arrays</td><td><code class="inline">.push .pop .shift .unshift .concat .sort .splice .forEach .map .filter .reduce</code>, <code class="inline">Array.from()</code></td></tr>
+      <tr><td>Objects</td><td>literal creation, dot/bracket access, <code class="inline">hasOwnProperty()</code>, <code class="inline">JSON.stringify() / JSON.parse()</code></td></tr>
+      <tr><td>DOM</td><td><code class="inline">getElementById, getElementsByClassName, querySelector, querySelectorAll, createElement, append, innerHTML, style, classList</code></td></tr>
+      <tr><td>Events</td><td><code class="inline">addEventListener</code>, <code class="inline">e.stopPropagation()</code>, <code class="inline">e.key</code>, <code class="inline">setTimeout</code>, <code class="inline">setInterval</code></td></tr>
+      <tr><td>Async</td><td><code class="inline">Promise, resolve, reject, .then, .catch, Promise.all/any/race/allSettled, async, await, fetch</code></td></tr>
+      <tr><td>Errors</td><td><code class="inline">try, catch, finally, throw, Error</code></td></tr>
+      <tr><td>OOP</td><td><code class="inline">class, constructor, extends, super, static, get, set, __proto__</code></td></tr>
+      <tr><td>Modern syntax</td><td>arrow functions, destructuring, spread/rest <code class="inline">...</code>, IIFE, template literals</td></tr>
+      <tr><td>Storage</td><td><code class="inline">localStorage.setItem / getItem</code></td></tr>
+      <tr><td>Browser</td><td><code class="inline">window.scrollTo(&#123;top, behavior:"smooth"&#125;)</code></td></tr>
+    </table>
+    <div class="note">This mirrors your <code class="inline">JS_Chapterwise_Notes.pdf</code> and the code across topics 54–83 — treat this page as your quick-fire revision before interviews or before jumping into React/Node.</div>
+  </div>
+</section>
+
+</div>
+
+<footer>Built from your JavaScript & NodeJs course folder · Click "Run" on any box — it executes real JS in your browser, no build step needed.</footer>
+
+<script>
+document.querySelectorAll('.run').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const srcEl = document.getElementById(btn.dataset.src);
+    const outEl = document.getElementById(btn.dataset.out);
+    const code = srcEl.textContent;
+    let logs = [];
+    const fakeConsole = {
+      log: (...args) => logs.push(args.map(a => {
+        try { return typeof a === 'object' ? JSON.stringify(a) : String(a); }
+        catch(e){ return String(a); }
+      }).join(' '))
+    };
+    try {
+      const fn = new Function('console', '"use strict";\n' + code);
+      fn(fakeConsole);
+    } catch (e) {
+      logs.push('⚠ ' + e.message);
+    }
+    // allow async logs (setTimeout/promises) to flush before showing
+    setTimeout(() => {
+      outEl.textContent = logs.length ? logs.join('\n') : '(no output yet — some results are delayed, click Run again in a second)';
+      outEl.style.display = 'block';
+    }, 350);
+  });
+});
+</script>
+
+</body>
+</html>
