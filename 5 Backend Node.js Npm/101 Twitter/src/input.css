@@ -1,0 +1,4 @@
+@import "tailwindcss";
+p.text {
+    padding-left: calc(var(--spacing) * 2.5);
+}
