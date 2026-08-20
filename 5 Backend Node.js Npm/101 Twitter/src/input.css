@@ -2,3 +2,7 @@
 p.text {
     padding-left: calc(var(--spacing) * 2.5);
 }
+
+span.smallicon{
+    font-size: 18px;
+}
